@@ -11,6 +11,9 @@ dependencies:
   expo:
     specifier: ~51.0.21
     version: 51.0.21(@babel/core@7.24.9)(@babel/preset-env@7.24.8)
+  expo-av:
+    specifier: ^14.0.6
+    version: 14.0.6(expo@51.0.21)
   expo-constants:
     specifier: ~16.0.2
     version: 16.0.2(expo@51.0.21)
@@ -4204,6 +4207,14 @@ packages:
       md5-file: 3.2.3
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /expo-av@14.0.6(expo@51.0.21):
+    resolution: {integrity: sha512-8FHKgMYo49C5hhgG0ssRRd454VQ82TuujhMdlz7ScJBihEXa89kWKpfk9bXrvetFtrJoAmYuGxsXCJCygZhxfA==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.21(@babel/core@7.24.9)(@babel/preset-env@7.24.8)
     dev: false
 
   /expo-constants@16.0.2(expo@51.0.21):
