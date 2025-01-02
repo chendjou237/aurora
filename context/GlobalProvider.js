@@ -22,14 +22,14 @@ export const GlobalProvider = ({children}) => {
       }
      }).catch(error => {
          console.log(error);
-         
+
      }
    ).finally(() => {
       setIsLoading(false);
    })
-   
+
    }, []);
-   
+
    return (
       <GlobalContext.Provider value={{
          isLoggedIn,

@@ -31,7 +31,8 @@ const [plays, setPlay] = useState(false);
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
       >
-        {plays ? (<Video
+        {plays ? (
+         <Video
         source={{uri:item.video}}
         className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
         resizeMode={ResizeMode.CONTAIN}
@@ -39,14 +40,14 @@ const [plays, setPlay] = useState(false);
         shouldPlay
         onPlaybackStatusUpdate={(status) => {if(status.didJustFinish){setPlay(false);}}  }
         />):
-        <TouchableOpacity className="relative justify-center items-center" activeOpacity={.7}
+        <TouchableOpacity className="relative items-center justify-center" activeOpacity={.7}
         onPress={() => {setPlay(true); console.log(item.video);
         }}
         >
           <ImageBackground source={{uri: item.thumbnail}} className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40" resizeMode='cover'/>
           <Image
           source={play}
-          className="w-12 h-12 absolute"
+          className="absolute w-12 h-12"
           resizeMode='contain'
           />
           </TouchableOpacity>}
@@ -69,7 +70,7 @@ const viewableItemsChanged = ({viewableItems}) => {
     keyExtractor={(item) => item.$id}
     renderItem={
      ({item}) => (
-      <TrendingItem  activeItem={active} item={item}/>
+      <TrendingItem  activeItem={active} item={item}  />
      )
     }
     onViewableItemsChanged={viewableItemsChanged}

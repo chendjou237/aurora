@@ -9,9 +9,9 @@ import  profile  from '../../assets/icons/profile.png';
 const TabIcon = ({icon, color,name,  focused}) => {
    return (
       <View className="items-center justify-center gap-2">
-         <Image 
+         <Image
          source={icon} resizeMode='contain' tintColor={color} className="w-6 h-6" />
-         <Text className={`text-xs ${focused ? 'font-psemibold' : 'font-pregular'}`} style={{color: color}}>{name}</Text>
+         <Text className={`text-xs w-20 text-center ${focused ? 'font-psemibold' : 'font-pregular'}`} style={{color: color}}>{name}</Text>
       </View>
    )
 }
@@ -24,11 +24,13 @@ const TabsLayout = () => {
             tabBarShowLabel: false,
             tabBarActiveTintColor: '#FFA001',
             tabBarActiveTintColor: '#CDCDE0',
+
             tabBarStyle: {
                backgroundColor: '#161622',
                borderTopWidth: 1,
                borderTopColor: '#232533',
                height: 84,
+
             }
          }
       }>
@@ -39,13 +41,13 @@ const TabsLayout = () => {
                <TabIcon icon={home} name={"Home"} color={color} focused={focused}/>
             )
          }}/>
-         <Tabs.Screen name='bookmark' options={{
+         {/* <Tabs.Screen name='bookmark' options={{
             title: 'Bookmark',
             headerShown: false,
             tabBarIcon: ({color, focused}) => (
                <TabIcon icon={bookmark} name={"Bookmark"} color={color} focused={focused}/>
             )
-         }}/>
+         }}/> */}
          <Tabs.Screen name='create' options={{
             title: 'Create',
             headerShown: false,

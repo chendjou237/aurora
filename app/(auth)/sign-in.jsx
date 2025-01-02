@@ -5,8 +5,10 @@ import {images} from '../../constants';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 import { Link, router } from 'expo-router';
-import { signIn } from '../../lib/appwrite';
+import { getCurrentUser, signIn } from '../../lib/appwrite';
+import { useGlobalContext } from '../../context/GlobalProvider';
 const SignIn = () => {
+   const { setUser, setIsLoggedIn} = useGlobalContext();
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -18,10 +20,15 @@ const SignIn = () => {
     try {
       setIsSubmitting( true);
 
- const result =   await   signIn(
+   await   signIn(
         form.email,
         form.password
-      );  
+      );
+
+      const result = await getCurrentUser();
+
+      setUser(result);
+      setIsLoggedIn(true);
 
       //add to global state...
 
@@ -30,26 +37,26 @@ const SignIn = () => {
       Alert.alert('Error', error.message)
     }
     finally{
-      
+
       setIsSubmitting(false);
     }
-    
+
   }
   const [isSubmitting, setIsSubmitting] = useState(false)
   return (
     <SafeAreaView className="h-full bg-primary">
-      <ScrollView> 
+      <ScrollView>
         <View className="justify-center w-full px-4 my-6 min-h-[83vh]">
         <Image source={images.logo} resizeMode="contain" className="w-[115px] h-[35px]"/>
         <Text className="mt-10 text-2xl text-white text-semibold font-psemibold">Log into Aurora</Text>
-        <FormField 
+        <FormField
           title="Email"
           value={form.email}
           handleChangeText={(e) => setForm({...form, email: e})}
           otherStyles = "mt-7"
           keybardType="email-address"
         />
-        <FormField 
+        <FormField
           title="Password"
           value={form.password}
           handleChangeText={(e) => setForm({...form, password: e})}

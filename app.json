@@ -14,13 +14,15 @@
     },
     "ios": {
       "supportsTablet": true,
-      "package": "com.xenora.aurora"
+      "package": "com.xenora.aurora",
+      "bundleIdentifier": "com.chendjou.aurora"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.chendjou.aurora"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,12 +30,20 @@
     "plugins": [
       "expo-router",
       [
-      "expo-video",
-      {
-         "supportsBackgroundPlayback": true,
-         "supportsPictureInPicture": true
-       }
-    ]
-    ]
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a5a0e404-21c9-4b13-bc8b-5702a7468699"
+      }
+    }
   }
 }

@@ -6,7 +6,9 @@ import CustomButton from '../../components/CustomButton';
 import FormField from '../../components/FormField';
 import { images } from '../../constants';
 import { createUser } from '../../lib/appwrite';
+import { useGlobalContext } from '../../context/GlobalProvider';
 const SignUp = () => {
+   const {setUser, setLoggedIn} = useGlobalContext();
 
   const [form, setForm] = useState({
     username: '',
@@ -25,41 +27,45 @@ const SignUp = () => {
         form.email,
         form.username,
         form.password
-      );  
+      );
 
       //add to global state...
+
+      setUser(result);
+      setLoggedIn(true);
+
 
       router.replace('/home');
     } catch (error) {
       Alert.alert('Error', error.message)
     }
     finally{
-      
+
       setForm({...form, isLoading: false});
     }
-    
+
   }
   return (
     <SafeAreaView className="h-full bg-primary">
-      <ScrollView> 
+      <ScrollView>
         <View className="justify-center w-full px-4 my-6 min-h-[83vh]">
         <Image source={images.logo} resizeMode="contain" className="w-[115px] h-[35px]"/>
         <Text className="mt-10 text-2xl text-white text-semibold font-psemibold">Sign Up into Aurora</Text>
-        <FormField 
+        <FormField
           title="Username"
           value={form.username}
           handleChangeText={(e) => setForm({...form, username: e})}
           otherStyles = "mt-7"
         />
-        <FormField 
+        <FormField
           title="Email"
           value={form.email}
           handleChangeText={(e) => setForm({...form, email: e})}
           otherStyles = "mt-7"
           keybardType="email-address"
         />
-        
-        <FormField 
+
+        <FormField
           title="Password"
           value={form.password}
           handleChangeText={(e) => setForm({...form, password: e})}
